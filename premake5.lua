@@ -1,4 +1,4 @@
-workspace "LittleAlchemyClone"
+workspace "LAC"
    configurations { "Debug", "Release" }
    architecture "x64"
 
@@ -20,12 +20,6 @@ project "Game"
       "src/*.hpp",
       "src/*.cpp",
       "res/icon.rc",
-      
-      -- current system has been configured to work with the raylib implementation
-      -- but whenever there's a new platform just change to the chosen platform's
-      -- source directory
-      "src/Platform/Raylib/*.cpp",
-      "src/Platform/Raylib/*.hpp"
    }
 
    includedirs {
