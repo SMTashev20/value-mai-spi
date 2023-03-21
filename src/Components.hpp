@@ -1,0 +1,85 @@
+#pragma once
+
+#include <string>
+#include <memory>
+#include <glm/glm.hpp>
+#include <optional>
+#include <functional>
+#include "./CTexture.hpp"
+#include "./CShader.hpp"
+
+namespace Feather
+{
+	
+	// TODO: this is not a component it should
+	//       be moved somewhere else
+	struct GlmRectangle
+	{
+		glm::vec2 m_Position;
+		glm::vec2 m_Dimensions;
+	};
+
+	struct TagComponent
+	{
+		std::string m_Tag;
+	};
+
+	struct TransformComponent
+	{
+		glm::vec3 m_Translation;
+		glm::vec4 m_Rotation;
+		glm::vec3 m_Scale;
+	};
+
+	struct SpriteRendererComponent
+	{
+		std::shared_ptr<CTexture> m_Texture;
+		std::shared_ptr<CShader> m_Shader; // (optional)
+
+		// Tint color
+		glm::vec4 m_Tint = glm::vec4(1.f, 1.f, 1.f, 1.f);
+
+		// Texture horizontal flip member
+		bool m_FlipH = false;
+
+		// Texture vertical flip member
+		bool m_FlipV = false;
+
+		// Texture will be translated, rotated and scaled
+		// accordingly to this Anchor member
+		struct Anchor
+		{
+			enum class Type
+			{
+				TopLeft,    TopCenter,    TopRight,
+				CenterLeft, Center,       CenterRight,
+				BottomLeft, BottomCenter, BottomRight,
+
+				Custom
+			} m_Type;
+
+			glm::vec2 m_CustomPosition;
+		} m_Anchor = { Anchor::Type::TopLeft, glm::vec2(0, 0) };
+
+		// Scaling using pixels, instead of fractions
+		std::optional<glm::vec2> m_CustomDestRect = {};
+
+		// Used to render a specific region of a texture
+		// NOTE: a texture alias workaround lol
+		std::optional<GlmRectangle> m_CustomSourceRect = {};
+	};
+
+	struct ModelRendererComponent
+	{
+		// not yet :P
+	};
+
+	// TODO
+	struct ScriptComponent
+	{
+		std::function<void()> m_OnCreate;
+		std::function<void()> m_OnUpdate;
+		std::function<void()> m_OnDestroy;
+	};
+
+}
