@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include <optional>
 #include <functional>
+#include <unordered_map>
 #include "./CTexture.hpp"
 #include "./CShader.hpp"
 #include "./Entity.hpp"
@@ -28,7 +29,7 @@ namespace Feather
 	struct TransformComponent
 	{
 		glm::vec3 m_Translation;
-		glm::vec4 m_Rotation;
+		glm::vec3 m_Rotation;
 		glm::vec3 m_Scale;
 	};
 

@@ -8,13 +8,21 @@ namespace Feather
 {
 	Entity Scene::CreateEntity()
 	{
+		m_IsDirty = true;
 		return Entity(m_Registry.create(), this);
 	}
 
 	void Scene::DestroyEntity(const Entity& e)
 	{
+		m_IsDirty = true;
 		assert(m_Registry.valid(e.GetHandle()) && "Entity handle is invalid");
 		m_Registry.destroy(e.GetHandle());
+	}
+
+	void Scene::DestroyAll()
+	{
+		m_IsDirty = true;
+		m_Registry = entt::registry{};
 	}
 
 	void Scene::OnRuntimeStart()
@@ -47,7 +55,10 @@ namespace Feather
 		{
 			auto sceneEnt = Entity(entity, this);
 			scriptComponent.m_OnUpdate(*this, sceneEnt, deltaTimeSeconds);
+			if (m_IsDirty) break;
 		}
+
+		m_IsDirty = false;
 	}
 
 	void Scene::OnRuntimeStop()

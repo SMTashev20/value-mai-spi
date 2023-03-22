@@ -97,11 +97,14 @@ namespace Feather
 			// -- origin vector --
 			Vector2 origin = SpriteAnchorToRaylibVector(renderer.m_Anchor, tex);
 			
+			if (renderer.m_Shader) renderer.m_Shader->Bind();
 
 			DrawTexturePro(
 				tex, source, dest, origin,
-				0.f, // TODO: implement rotation
+				transform.m_Rotation.x,
 				GlmToRaylibColor(renderer.m_Tint));
+
+			if (renderer.m_Shader) renderer.m_Shader->Unbind();
 		}
 	}
 }

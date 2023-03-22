@@ -14,6 +14,7 @@ namespace Feather
 	public:
 		Entity CreateEntity();
 		void DestroyEntity(const Entity&);
+		void DestroyAll();
 
 		bool IsRunning() { return m_IsRunning; }
 
@@ -46,6 +47,10 @@ namespace Feather
 	private:
 		bool m_IsRunning = true;
 		entt::registry m_Registry;
+
+		// has anything changed since calling the ScriptComponent's
+		// event functions (could have mutated something in the scene)
+		bool m_IsDirty = false;
 	};
 
 }
