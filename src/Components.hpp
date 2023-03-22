@@ -7,6 +7,7 @@
 #include <functional>
 #include "./CTexture.hpp"
 #include "./CShader.hpp"
+#include "./Entity.hpp"
 
 namespace Feather
 {
@@ -74,12 +75,18 @@ namespace Feather
 		// not yet :P
 	};
 
+	// forward decl
+	class Scene;
+
 	// TODO
 	struct ScriptComponent
 	{
-		std::function<void()> m_OnCreate;
-		std::function<void()> m_OnUpdate;
-		std::function<void()> m_OnDestroy;
+		// Scene& mainScene
+		std::function<void(Scene&, Entity&)> m_OnCreate = [](Scene&, Entity&) {};
+		// Scene& mainScene, float deltaTimeSeconds
+		std::function<void(Scene&, Entity&, float)> m_OnUpdate = [](Scene&, Entity&, float) {};
+		// Scene& mainScene
+		std::function<void(Scene&, Entity&)> m_OnDestroy = [](Scene&, Entity&) {};
 	};
 
 }

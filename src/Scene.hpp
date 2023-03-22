@@ -2,8 +2,6 @@
 
 #include <entt/entt.hpp>
 
-#include "./Components.hpp"
-
 namespace Feather
 {
 	class Entity;
@@ -20,11 +18,12 @@ namespace Feather
 		bool IsRunning() { return m_IsRunning; }
 
 		void OnRuntimeStart();
-		void OnRuntimeUpdate(float deltaTimeSeconds);
+
+		void OnRender();
+		void OnTick(float deltaTimeSeconds);
+
 		void OnRuntimeStop();
 
-		// TODO: make this return std::vector<Entity>
-		// function forwarding to private member m_Registry
 		template<typename... Other, typename... Exclude>
 		auto GetEntitiesWith(entt::exclude_t<Exclude...> = {})
 		{
@@ -42,10 +41,7 @@ namespace Feather
 		// when internals need to be notified when a certain
 		// component has been added to the scene
 		template<typename T>
-		void OnComponentAdded(Entity& entity, T& component)
-		{
-			// nothing
-		}
+		void OnComponentAdded(Entity& entity, T& component);
 
 	private:
 		bool m_IsRunning = true;
