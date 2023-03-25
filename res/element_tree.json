@@ -1,0 +1,20 @@
+{
+  "elements": [
+    {
+      "id": "oxygen",
+      "name": "Oxygen"
+    },
+    {
+      "id": "water",
+      "name": "Water"
+    },
+    {
+      "id": "nitrogen",
+      "name": "Nitrogen"
+    },
+    {
+      "id": "ozone",
+      "name": "Ozone"
+    }
+  ]
+}
