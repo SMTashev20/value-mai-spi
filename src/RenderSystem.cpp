@@ -59,7 +59,6 @@ namespace Feather
 	{
 		void RenderSprite(const SpriteRendererComponent& renderer, const TransformComponent& transform)
 		{
-			// TODO: account for m_Shader
 			const Texture& tex = renderer.m_Texture->GetRaylib();
 
 			// --- source rectangle ---
@@ -105,6 +104,56 @@ namespace Feather
 				GlmToRaylibColor(renderer.m_Tint));
 
 			if (renderer.m_Shader) renderer.m_Shader->Unbind();
+		}
+
+		void RenderViewport(const ViewportRendererComponent& renderer, const TransformComponent& transform)
+		{
+			const RenderTexture& nativeBuffer = renderer.m_Buffer->GetRaylib();
+			Rectangle source{
+				0.f, 0.f,
+				nativeBuffer.texture.width,
+				nativeBuffer.texture.height
+			};
+
+			if (renderer.m_FlipH) source.width *= -1.f;
+			if (renderer.m_FlipV) source.height *= -1.f;
+
+			Rectangle dest{
+				transform.m_Translation.x, transform.m_Translation.y,
+				nativeBuffer.texture.width * transform.m_Scale.x,
+				nativeBuffer.texture.height * transform.m_Scale.y
+			};
+
+			if (renderer.m_Shader) renderer.m_Shader->Bind();
+
+			DrawTexturePro(
+				nativeBuffer.texture, source, dest, {},
+				transform.m_Rotation.x,
+				GlmToRaylibColor(renderer.m_Tint));
+
+			if (renderer.m_Shader) renderer.m_Shader->Unbind();
+		}
+
+		glm::vec2 GetSpriteSize(const SpriteRendererComponent& renderer, const TransformComponent& transform)
+		{
+			const Texture& nativeTex = renderer.m_Texture->GetRaylib();
+			if (renderer.m_CustomDestRect.has_value())
+				return glm::vec2(renderer.m_CustomDestRect->x, renderer.m_CustomDestRect->y);
+			else
+			{
+				return glm::vec2(
+					nativeTex.width * transform.m_Scale.x,
+					nativeTex.height * transform.m_Scale.y);
+			}
+		}
+
+		glm::vec2 GetViewportSize(const ViewportRendererComponent& renderer, const TransformComponent& transform)
+		{
+			const RenderTexture& nativeBuffer = renderer.m_Buffer->GetRaylib();
+			return glm::vec2(
+				nativeBuffer.texture.width * transform.m_Scale.x,
+				nativeBuffer.texture.height * transform.m_Scale.y
+			);
 		}
 	}
 }

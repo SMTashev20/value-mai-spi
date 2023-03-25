@@ -6,8 +6,10 @@
 #include <optional>
 #include <functional>
 #include <unordered_map>
+#include <any>
 #include "./CTexture.hpp"
 #include "./CShader.hpp"
+#include "./CFrameBuffer.hpp"
 #include "./Entity.hpp"
 
 namespace Feather
@@ -31,6 +33,17 @@ namespace Feather
 		glm::vec3 m_Translation;
 		glm::vec3 m_Rotation;
 		glm::vec3 m_Scale;
+	};
+
+	struct ViewportRendererComponent
+	{
+		std::shared_ptr<CFrameBuffer> m_Buffer;
+		std::shared_ptr<CShader> m_Shader;
+
+		glm::vec4 m_Tint = glm::vec4(1.f, 1.f, 1.f, 1.f);
+
+		bool m_FlipH = false;
+		bool m_FlipV = false;
 	};
 
 	struct SpriteRendererComponent
@@ -82,6 +95,8 @@ namespace Feather
 	// TODO
 	struct ScriptComponent
 	{
+		std::unordered_map<std::string, std::any> m_VariableMap;
+
 		// Scene& mainScene
 		std::function<void(Scene&, Entity&)> m_OnCreate = [](Scene&, Entity&) {};
 		// Scene& mainScene, float deltaTimeSeconds

@@ -26,7 +26,7 @@ namespace Feather
 		void OnRuntimeStop();
 
 		template<typename... Other, typename... Exclude>
-		auto GetEntitiesWith(entt::exclude_t<Exclude...> = {})
+		std::vector<Entity> GetEntitiesWith(entt::exclude_t<Exclude...> = {})
 		{
 			auto view = m_Registry.view<Other...>(entt::exclude<Exclude...>);
 			std::vector<Entity> out{};
@@ -36,6 +36,8 @@ namespace Feather
 
 			return out;
 		}
+
+		std::vector<Entity> GetEntitiesWithTagName(std::string tag);
 	
 	private:
 		// not really used, but could come in handy

@@ -26,6 +26,7 @@ project "Game"
       "vendor/entt/src",
       "vendor/raylib/include",
       "vendor/glm",
+      "vendor/nlohmann_json/",
       "src"
    }
 

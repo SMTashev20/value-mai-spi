@@ -31,14 +31,19 @@ namespace Feather
 	}
 	void Scene::OnRender()
 	{
-		// TODO: implement renderers
-
 		BeginDrawing();
 		ClearBackground(BLACK);
 		m_Registry.view<const SpriteRendererComponent, const TransformComponent>().each(
 			[](const SpriteRendererComponent& renderer, const TransformComponent& transform)
 			{
 				RenderSystem::RenderSprite(renderer, transform);
+			}
+		);
+
+		m_Registry.view<const ViewportRendererComponent, const TransformComponent>().each(
+			[](const ViewportRendererComponent& renderer, const TransformComponent& transform)
+			{
+				RenderSystem::RenderViewport(renderer, transform);
 			}
 		);
 		EndDrawing();
@@ -64,6 +69,20 @@ namespace Feather
 	void Scene::OnRuntimeStop()
 	{
 		m_IsRunning = false;
+	}
+
+	std::vector<Entity> Scene::GetEntitiesWithTagName(std::string tag)
+	{
+		auto view = m_Registry.view<const TagComponent>();
+		std::vector<Entity> out{};
+
+		for (auto [entity, tagComp] : view.each())
+		{
+			if (tagComp.m_Tag == tag)
+				out.push_back(Entity(entity, this));
+		}
+
+		return out;
 	}
 
 	template<typename T>

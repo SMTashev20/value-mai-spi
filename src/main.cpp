@@ -4,6 +4,8 @@
 #include "Components.hpp"
 #include "CTexture.hpp"
 #include "CShader.hpp"
+#include "RenderSystem.hpp"
+#include "GameScene.hpp"
 #include <memory>
 
 void DragNDropScene(Feather::Scene& sceneRef);
@@ -27,36 +29,16 @@ void NextScene(Feather::Scene& sceneRef)
 	}
 }
 
+
+
 void DragNDropScene(Feather::Scene& sceneRef)
 {
 	{
-		auto entity = sceneRef.CreateEntity();
-		auto texture = std::make_shared<Feather::CTexture>("res/developer_texture.png");
-		auto shader = std::make_shared<Feather::CShader>(std::optional<std::string>{}, "res/fs.glsl");
-
-		auto renderer = Feather::SpriteRendererComponent{
-			texture,
-			shader
-		};
-
-		renderer.m_Anchor.m_Type = Feather::SpriteRendererComponent::Anchor::Type::Center;
-		entity.AddOrReplaceComponent<Feather::SpriteRendererComponent>(renderer);
-
-		entity.AddOrReplaceComponent<Feather::TransformComponent>(Feather::TransformComponent{
-			glm::vec3{},
-			glm::vec3{0.f, 0.f, 0.f},
-			glm::vec3{1.f, 1.f, 1.f}
-			});
-
-		auto scriptComp = Feather::ScriptComponent{};
-		scriptComp.m_OnUpdate = [](Feather::Scene& scene, Feather::Entity& entity, float delta) {
-			auto& transform = entity.GetComponent<Feather::TransformComponent>();
-
-			transform.m_Translation.x += delta * 5.f;
-			transform.m_Translation.y += delta * 2.f;
-			transform.m_Rotation.x += delta * 10.f;
-		};
-		entity.AddOrReplaceComponent<Feather::ScriptComponent>(scriptComp);
+		auto texture = std::make_shared<Feather::CTexture>("res/chemical/oxygen.png");
+		Game::CreateDragNDropSprite(sceneRef, glm::vec2(0.f, 0.f), texture, nullptr);
+		Game::CreateDragNDropSprite(sceneRef, glm::vec2(30.f, 30.f), texture, nullptr);
+		Game::CreateDragNDropSprite(sceneRef, glm::vec2(100.f, 50.f), texture, nullptr);
+		Game::CreateDragNDropManager(sceneRef);
 	}
 
 	{
@@ -78,6 +60,8 @@ void DragNDropScene(Feather::Scene& sceneRef)
 
 int main()
 {
+	// TODO: implement Game::GameScene
+
 	auto app = Feather::Application::Create(Feather::CWindow::Properties());
 	DragNDropScene(app->GetMainScene());
 	app->Run();
