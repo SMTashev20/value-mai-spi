@@ -12,6 +12,13 @@
 namespace Game
 {
 
+	struct EntityHoldData
+	{
+		Feather::Entity m_HeldEntity = Feather::Entity(entt::null, nullptr);
+		glm::vec2 m_HeldAtRelativePosition = glm::vec2(0.f, 0.f);
+		glm::vec2 m_LastRecordedPosition = glm::vec2(0.f, 0.f);
+	};
+
 	Feather::Entity CreateDragNDropManager(Feather::Scene& sceneRef)
 	{
 		auto entity = sceneRef.CreateEntity();
