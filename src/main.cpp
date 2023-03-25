@@ -34,11 +34,45 @@ void NextScene(Feather::Scene& sceneRef)
 void DragNDropScene(Feather::Scene& sceneRef)
 {
 	{
-		auto texture = std::make_shared<Feather::CTexture>("res/chemical/oxygen.png");
-		Game::CreateDragNDropSprite(sceneRef, glm::vec2(0.f, 0.f), texture, nullptr);
-		Game::CreateDragNDropSprite(sceneRef, glm::vec2(30.f, 30.f), texture, nullptr);
-		Game::CreateDragNDropSprite(sceneRef, glm::vec2(100.f, 50.f), texture, nullptr);
+		auto waterTex = std::make_shared<Feather::CTexture>("res/chemical/water.png");
+		auto nitrogenTex = std::make_shared<Feather::CTexture>("res/chemical/nitrogen.png");
+		auto oxygenTex = std::make_shared<Feather::CTexture>("res/chemical/oxygen.png");
+		auto ozoneTex = std::make_shared<Feather::CTexture>("res/chemical/ozone.png");
+
+		Game::CreateDragNDropSprite(sceneRef, glm::vec2(0.f, 0.f), waterTex, nullptr);
+		Game::CreateDragNDropSprite(sceneRef, glm::vec2(30.f, 30.f), nitrogenTex, nullptr);
+		Game::CreateDragNDropSprite(sceneRef, glm::vec2(100.f, 50.f), ozoneTex, nullptr);
+		auto entity = Game::CreateDragNDropSprite(sceneRef, glm::vec2(200.f, 200.f), oxygenTex, nullptr);
+		entity.AddComponent<Feather::ScriptComponent>();
+		entity.GetComponent<Feather::ScriptComponent>().m_OnUpdate = [](Feather::Scene&, Feather::Entity& entity, float) {
+			entity.GetComponent<Feather::TransformComponent>().m_Translation.x++;
+			entity.GetComponent<Feather::TransformComponent>().m_Translation.y++;
+		};
 		Game::CreateDragNDropManager(sceneRef);
+	}
+
+	{
+		auto devTex = std::make_shared<Feather::CTexture>("res/developer_texture.png");
+		auto shader = std::make_shared<Feather::CShader>(std::optional<std::string>{}, "res/fs.glsl");
+
+		auto entity = sceneRef.CreateEntity();
+
+		auto transformComponent = Feather::TransformComponent{
+			{ 0.f, 0.f, 0.f },
+			{ 0.f, 0.f, 0.f },
+			{ 1.f, 1.f, 1.f }
+		};
+
+		auto spriteRendererComponent = Feather::SpriteRendererComponent{
+			devTex
+		};
+
+		auto winRes = Feather::Application::GetInstance().GetWindow().GetSize();
+		spriteRendererComponent.m_CustomDestRect = glm::vec2(winRes.x, winRes.y);
+
+		entity.AddComponent<Feather::TagComponent>();
+		entity.AddComponent<Feather::TransformComponent>(transformComponent);
+		entity.AddComponent<Feather::SpriteRendererComponent>(spriteRendererComponent);
 	}
 
 	{

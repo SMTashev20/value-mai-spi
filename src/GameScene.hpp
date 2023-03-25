@@ -7,6 +7,7 @@
 
 #include <raylib.h>
 #include <nlohmann/json.hpp>
+#include <iostream>
 
 namespace Game
 {
@@ -19,11 +20,12 @@ namespace Game
 
 		auto script = Feather::ScriptComponent{};
 		script.m_VariableMap.insert(std::pair("m_CurrentlyHeldEntity", Feather::Entity(entt::null, &sceneRef)));
+		script.m_VariableMap.insert(std::pair("m_LastRecordedPosition", glm::vec2(0.f, 0.f)));
 
 		// methods to hook to
-		script.m_VariableMap.insert(std::pair("m_OnReleased", std::function<void(Feather::Entity&)>{[](Feather::Entity&) {}}));
-		script.m_VariableMap.insert(std::pair("m_OnBeginHold", std::function<void(Feather::Entity&)>{[](Feather::Entity&) {}}));
-		script.m_VariableMap.insert(std::pair("m_OnMove", std::function<void(Feather::Entity&)>{[](Feather::Entity&) {}}));
+		script.m_VariableMap.insert(std::pair("m_OnReleased", std::function<void(Feather::Entity&)>{[](Feather::Entity&) { std::cout << "OnReleased" << std::endl; }}));
+		script.m_VariableMap.insert(std::pair("m_OnBeginHold", std::function<void(Feather::Entity&)>{[](Feather::Entity&) { std::cout << "OnBeginHold" << std::endl; }}));
+		script.m_VariableMap.insert(std::pair("m_OnMove", std::function<void(Feather::Entity&)>{[](Feather::Entity&) { std::cout << "OnMove" << std::endl; }}));
 
 
 		script.m_OnUpdate = [](Feather::Scene& scene, Feather::Entity& managerEntity, float) {
@@ -44,10 +46,17 @@ namespace Game
 				}
 				else if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 				{
-					std::any_cast<std::function<void(Feather::Entity&)>>(script.m_VariableMap.at("m_OnMove"))(currHeld);
+					auto& lastPos = std::any_cast<glm::vec2&>(script.m_VariableMap.at("m_LastRecordedPosition"));
+
+					if (lastPos.x != mousePos.x && lastPos.y != mousePos.y)
+						std::any_cast<std::function<void(Feather::Entity&)>>(script.m_VariableMap.at("m_OnMove"))(currHeld);
+
 					auto& transform = currHeld.GetComponent<Feather::TransformComponent>();
 					transform.m_Translation.x = mousePos.x;
 					transform.m_Translation.y = mousePos.y;
+
+					lastPos.x = mousePos.x;
+					lastPos.y = mousePos.y;
 				}
 
 				return;

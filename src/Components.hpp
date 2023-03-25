@@ -25,7 +25,7 @@ namespace Feather
 
 	struct TagComponent
 	{
-		std::string m_Tag;
+		std::string m_Tag = "Default";
 	};
 
 	struct TransformComponent
