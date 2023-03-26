@@ -23,6 +23,9 @@ namespace Feather
 		glm::vec2 m_Dimensions;
 	};
 
+	// used to exclude entities from rendering stage
+	struct HideComponent {};
+
 	struct TagComponent
 	{
 		std::string m_Tag = "Default";

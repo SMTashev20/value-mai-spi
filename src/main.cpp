@@ -6,6 +6,7 @@
 #include "CShader.hpp"
 #include "RenderSystem.hpp"
 #include "GameScene.hpp"
+
 #include <memory>
 
 void DragNDropScene(Feather::Scene& sceneRef);

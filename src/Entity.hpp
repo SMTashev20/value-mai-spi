@@ -1,5 +1,6 @@
 #pragma once
-#include <Scene.hpp>
+
+#include "Scene.hpp"
 
 #include <cassert>
 

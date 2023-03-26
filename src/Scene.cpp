@@ -33,14 +33,14 @@ namespace Feather
 	{
 		BeginDrawing();
 		ClearBackground(BLACK);
-		m_Registry.view<const SpriteRendererComponent, const TransformComponent>().each(
+		m_Registry.view<const SpriteRendererComponent, const TransformComponent>(entt::exclude<HideComponent>).each(
 			[](const SpriteRendererComponent& renderer, const TransformComponent& transform)
 			{
 				RenderSystem::RenderSprite(renderer, transform);
 			}
 		);
 
-		m_Registry.view<const ViewportRendererComponent, const TransformComponent>().each(
+		m_Registry.view<const ViewportRendererComponent, const TransformComponent>(entt::exclude<HideComponent>).each(
 			[](const ViewportRendererComponent& renderer, const TransformComponent& transform)
 			{
 				RenderSystem::RenderViewport(renderer, transform);
