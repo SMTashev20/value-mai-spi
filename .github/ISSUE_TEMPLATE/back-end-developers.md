@@ -7,4 +7,4 @@ assignees: AEManov20, GGGeorgiev20
 
 ---
 
-
+**Resume of the work:**
