@@ -7,4 +7,4 @@ assignees: SMTashev20
 
 ---
 
-
+**Resume of the problem:**
