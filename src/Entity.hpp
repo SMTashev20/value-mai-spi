@@ -46,7 +46,14 @@ namespace Feather
 		}
 
 		template<typename T>
-		bool HasComponent()
+		const T& GetComponent() const
+		{
+			assert(HasComponent<T>() && "Entity doesn't have said component");
+			return m_Scene->m_Registry.get<T>(m_EntityHandle);
+		}
+
+		template<typename T>
+		bool HasComponent() const
 		{
 			// quite a costly approach
 			// TODO: implement a different way

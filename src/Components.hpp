@@ -40,6 +40,8 @@ namespace Feather
 
 	struct ViewportRendererComponent
 	{
+		std::function<void(const Scene&, const Entity&)> m_OnRender;
+
 		std::shared_ptr<CFrameBuffer> m_Buffer;
 		std::shared_ptr<CShader> m_Shader;
 

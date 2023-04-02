@@ -41,11 +41,12 @@ namespace Feather
 		);
 
 		m_Registry.view<const ViewportRendererComponent, const TransformComponent>(entt::exclude<HideComponent>).each(
-			[](const ViewportRendererComponent& renderer, const TransformComponent& transform)
+			[&](const auto& entity, const ViewportRendererComponent& renderer, const TransformComponent& transform)
 			{
-				RenderSystem::RenderViewport(renderer, transform);
+				RenderSystem::RenderViewport(Feather::Entity(entity, this), *this, renderer, transform);
 			}
 		);
+
 		EndDrawing();
 	}
 
@@ -114,6 +115,11 @@ namespace Feather
 
 	template<>
 	void Scene::OnComponentAdded<ModelRendererComponent>(Entity& entity, ModelRendererComponent& component)
+	{
+	}
+
+	template<>
+	void Scene::OnComponentAdded<ViewportRendererComponent>(Entity& entity, ViewportRendererComponent& component)
 	{
 	}
 

@@ -106,13 +106,20 @@ namespace Feather
 			if (renderer.m_Shader) renderer.m_Shader->Unbind();
 		}
 
-		void RenderViewport(const ViewportRendererComponent& renderer, const TransformComponent& transform)
+		void RenderViewport(const Feather::Entity& entity, const Feather::Scene& scene, const ViewportRendererComponent& renderer, const TransformComponent& transform)
 		{
+			if (renderer.m_OnRender)
+			{
+				renderer.m_Buffer->Bind();
+				renderer.m_OnRender(scene, entity);
+				renderer.m_Buffer->Unbind();
+			}
+
 			const RenderTexture& nativeBuffer = renderer.m_Buffer->GetRaylib();
 			Rectangle source{
 				0.f, 0.f,
 				nativeBuffer.texture.width,
-				nativeBuffer.texture.height
+				-nativeBuffer.texture.height
 			};
 
 			if (renderer.m_FlipH) source.width *= -1.f;
