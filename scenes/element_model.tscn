@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://b7epqaq8sssue"]
+[gd_scene load_steps=16 format=3 uid="uid://oh250gjdp208"]
 
 [ext_resource type="Script" path="res://scripts/ElementModelLoader.gd" id="1_dp3sa"]
-[ext_resource type="FontFile" uid="uid://dyrs3uq6gnbgq" path="res://Public_Sans/PublicSans-ExtraBold.ttf" id="1_wiq53"]
-[ext_resource type="FontFile" uid="uid://dna6hpx6uth4l" path="res://Public_Sans/PublicSans-SemiBold.ttf" id="2_bupom"]
+[ext_resource type="FontFile" uid="uid://dyrs3uq6gnbgq" path="res://resources/fonts/Public_Sans/PublicSans-ExtraBold.ttf" id="2_ma0d8"]
+[ext_resource type="FontFile" uid="uid://dna6hpx6uth4l" path="res://resources/fonts/Public_Sans/PublicSans-SemiBold.ttf" id="3_t7wqs"]
 
 [sub_resource type="Environment" id="Environment_61w0q"]
 background_color = Color(0, 0, 0, 0)
@@ -39,7 +39,7 @@ refraction_scale = 0.0
 
 [sub_resource type="TextMesh" id="TextMesh_jqojb"]
 text = "De"
-font = ExtResource("1_wiq53")
+font = ExtResource("2_ma0d8")
 curve_step = 0.1
 depth = 0.03
 
@@ -49,17 +49,17 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_n2nb5"]
 text = "Default"
-font = ExtResource("1_wiq53")
+font = ExtResource("2_ma0d8")
 depth = 0.0
 
 [sub_resource type="TextMesh" id="TextMesh_8t2ti"]
 text = "0.0"
-font = ExtResource("2_bupom")
+font = ExtResource("3_t7wqs")
 depth = 0.0
 
 [sub_resource type="TextMesh" id="TextMesh_d4vqw"]
 text = "0"
-font = ExtResource("2_bupom")
+font = ExtResource("3_t7wqs")
 horizontal_alignment = 0
 vertical_alignment = 0
 depth = 0.0

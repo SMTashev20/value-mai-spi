@@ -1,2 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
+.sconsign.dblite
+**/*.obj
+**/*.dll
+**/*.exp
+**/__pycache__
