@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7qvd2ctvn1ag"]
+
+[ext_resource type="Script" path="res://scripts/PTableManager.gd" id="1_8dmet"]
+[ext_resource type="JSON" path="res://resources/element_colors.json" id="2_lutem"]
+[ext_resource type="JSON" path="res://resources/element_data.json" id="3_gyhh5"]
+[ext_resource type="PackedScene" uid="uid://dwiqehb8vy5kk" path="res://scenes/element_button.tscn" id="4_6hk5c"]
+[ext_resource type="PackedScene" uid="uid://bo8u64lrisqca" path="res://scenes/element.tscn" id="5_0jqhd"]
+
+[node name="periodic_table" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 896.0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+columns = 18
+script = ExtResource("1_8dmet")
+element_colors = ExtResource("2_lutem")
+element_data = ExtResource("3_gyhh5")
+element_button_prefab = ExtResource("4_6hk5c")
+element_scene_prefab = ExtResource("5_0jqhd")
