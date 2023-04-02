@@ -1,0 +1,17 @@
+{
+	"unknown, probably post-transition metal": "8F2998FF",
+	"unknown, probably metalloid": "5758F1FF",
+	"unknown, predicted to be noble gas": "AAAAAAFF",
+	"unknown, probably transition metal": "AAAAAAFF",
+	"unknown, but predicted to be an alkali metal": "AAAAAAFF",
+	"polyatomic nonmetal": "097CBDFF",
+	"diatomic nonmetal": "5758F1FF",
+	"post-transition metal": "415D3AFF",
+	"alkaline earth metal": "0B705CFF",
+	"alkali metal": "317389FF",
+	"transition metal": "0B705CFF",
+	"metalloid": "8C591DFF",
+	"lanthanide": "828282FF",
+	"actinide": "6D6D6DFF",
+	"noble gas": "8033BCFF"
+}
