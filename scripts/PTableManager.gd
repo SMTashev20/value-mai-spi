@@ -36,11 +36,8 @@ func generate_theme(from_theme: Theme, element_color: Color) -> Theme:
 	
 	for name in out.get_stylebox_list("Button"):
 		var stylebox = out.get_stylebox(name, "Button").duplicate() as StyleBoxFlat
-		if name == "disabled": stylebox.bg_color = element_color
-		if name == "focus": stylebox.bg_color = element_color.darkened(.25)
-		if name == "hover": stylebox.bg_color = element_color.lightened(.25)
-		if name == "normal": stylebox.bg_color = element_color
-		if name == "pressed": stylebox.bg_color = element_color.darkened(.25)
+		stylebox.border_color = element_color
+		stylebox.bg_color = Color(0., 0., 0., 0.)
 		out.set_stylebox(name, "Button", stylebox)
 	
 	# for name in out.get_stylebox_list("Button"):
@@ -51,6 +48,16 @@ func create_element_button(data: ElementData):
 	var button = element_button_prefab.instantiate() as Button
 	button.text = data.symbol
 	
+	var label = Label.new()
+	label.text = str(data.atomic_number)
+	label.label_settings = LabelSettings.new()
+	label.label_settings.font_color = data.color
+	label.label_settings.font = button.get_theme_font("font", "Button")
+	label.position.x += 4
+	label.position.y += 3
+	
+	button.add_child(label)
+	
 	button.connect("pressed", 
 		func():
 			var root = get_tree().root
@@ -59,7 +66,7 @@ func create_element_button(data: ElementData):
 	)
 	
 	button.theme = data.button_theme
-	button.flat = true
+	# button.flat = true
 	
 	add_child(button)
 	
@@ -138,7 +145,6 @@ func _ready():
 	# hell
 	# for sign in .get_signal_list():
 	# 	print(sign)
-	
 	for column in convert_to_grid(elements):
 		for element in column:
 			if element == null:
