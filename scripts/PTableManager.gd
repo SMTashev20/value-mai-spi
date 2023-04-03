@@ -23,6 +23,8 @@ class ElementData:
 	var button_theme: Theme
 	var color: Color = Color(.8, .8, .8)
 	var shells: Array = [1]
+	
+	var additional_properties: Dictionary = {}
 
 func generate_theme(from_theme: Theme, element_color: Color) -> Theme:
 	var out: Theme = from_theme.duplicate()
@@ -123,6 +125,17 @@ func gen_element_data(element: Dictionary) -> ElementData:
 	data.button_theme = element_theme[element.category]
 	data.relative_pos = Vector2i(element.xpos, element.ypos)
 	data.description = element.summary
+	
+	data.additional_properties["Boiling Point"] = str(element.boil) + " K"
+	data.additional_properties["Melting Point"] = str(element.melt) + " K"
+	data.additional_properties["Density"] = str(element.density) + "g/L"
+	data.additional_properties["Appearance"] = element.appearance
+	data.additional_properties["Phase"] = element.phase
+	data.additional_properties["Electron Configuration"] = element.electron_configuration_semantic
+	data.additional_properties["Electronegativity Pauling"] = str(element.electronegativity_pauling)
+	data.additional_properties["Category"] = element.category
+	data.additional_properties["Discovered By"] = element.discovered_by
+	data.additional_properties["Named By"] = element.named_by
 	
 	return data
 

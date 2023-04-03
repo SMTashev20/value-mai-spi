@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dhch5scnjqe4s"]
+
+[ext_resource type="FontFile" uid="uid://dbclcdqu64gph" path="res://resources/fonts/Public_Sans/PublicSans-Medium.ttf" id="1_4o7gu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jio7p"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.792157, 0.792157, 0.792157, 0.670588)
+
+[resource]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("1_4o7gu")
+Label/styles/normal = SubResource("StyleBoxFlat_jio7p")

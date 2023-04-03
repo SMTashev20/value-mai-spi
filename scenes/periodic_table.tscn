@@ -4,7 +4,7 @@
 [ext_resource type="JSON" path="res://resources/element_colors.json" id="2_lutem"]
 [ext_resource type="JSON" path="res://resources/element_data.json" id="3_gyhh5"]
 [ext_resource type="PackedScene" uid="uid://dwiqehb8vy5kk" path="res://scenes/element_button.tscn" id="4_6hk5c"]
-[ext_resource type="PackedScene" uid="uid://bo8u64lrisqca" path="res://scenes/element.tscn" id="5_0jqhd"]
+[ext_resource type="PackedScene" uid="uid://b8jdlq3nka1ef" path="res://scenes/element.tscn" id="5_0jqhd"]
 [ext_resource type="Theme" uid="uid://bydhn5g5ade1x" path="res://resources/element_button_theme.tres" id="5_lg85j"]
 
 [sub_resource type="Theme" id="Theme_rvt8h"]

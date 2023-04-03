@@ -62,6 +62,9 @@ depth = 0.0
 environment = SubResource("Environment_61w0q")
 camera_attributes = SubResource("CameraAttributesPractical_ahvul")
 
+[node name="Alternative" type="Node3D" parent="."]
+visible = false
+
 [node name="Base" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1.138)
 material_override = SubResource("StandardMaterial3D_oxdy8")
