@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://bpnbngtob5bwm"
+path="res://.godot/imported/HW Pano Trial Light Italic.woff2-cd30f55df88ea01f86293cde836ea9cc.fontdata"
+
+[deps]
+
+source_file="res://resources/fonts/HW_Pano_Trial/HW Pano Trial Light Italic.woff2"
+dest_files=["res://.godot/imported/HW Pano Trial Light Italic.woff2-cd30f55df88ea01f86293cde836ea9cc.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
