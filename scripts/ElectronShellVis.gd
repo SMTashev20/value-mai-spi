@@ -30,17 +30,22 @@ func _draw():
 	
 	var counter = 0
 	for shell in shells:
+		var ring_radius = spacing * (counter + 1) + core_radius
 		draw_arc(
 			screen_center,
-			spacing * (counter + 1) + core_radius, 0.,
+			ring_radius, 0.,
 			TAU, points_amount * (counter + 1),
 			ring_color, ring_width, true)
 		
 		var rad_per_electron = TAU / shell
-		for electron in shell:
+		for i in range(shell):
+			var angle_increment = 360 / shell
+			var angle = i * angle_increment
+			var electron_position = Vector2(ring_radius, 0).rotated(deg_to_rad(angle))
+			
 			draw_circle(Vector2(
-				screen_center.x + sin(rad_per_electron * electron) * spacing * (counter + 1) + core_radius,
-				screen_center.y + cos(rad_per_electron * electron) * spacing * (counter + 1) + core_radius
+				screen_center.x + electron_position.x,
+				screen_center.y + electron_position.y,
 			), electron_radius, electron_color)
 		
 		counter += 1
