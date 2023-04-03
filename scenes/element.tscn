@@ -281,7 +281,6 @@ ring_width = 0.6
 spacing = 20.0
 points_amount = 30
 core_radius = 20.0
-electron_radius = 10.0
 
 [connection signal="pressed" from="HomeButton" to="HomeButton" method="_on_pressed"]
 [connection signal="number_changed" from="CenterContainer/VerticalCarousel" to="." method="_on_vertical_carousel_number_changed"]
