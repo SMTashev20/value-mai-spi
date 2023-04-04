@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://gqjc635j7m7s"]
+
+[ext_resource type="Script" path="res://scripts/ElectronShellVis.gd" id="1_0a4r6"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_0a4r6")
+ring_width = 1.0
+spacing = 20.0
+points_amount = 20
+core_radius = 20.0
+electron_radius = 5.0

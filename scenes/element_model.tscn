@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=3 uid="uid://dnki2t4qc0nm5"]
+
+[ext_resource type="FontFile" uid="uid://dyrs3uq6gnbgq" path="res://resources/fonts/Public_Sans/PublicSans-ExtraBold.ttf" id="2_ma0d8"]
+[ext_resource type="FontFile" uid="uid://dna6hpx6uth4l" path="res://resources/fonts/Public_Sans/PublicSans-SemiBold.ttf" id="3_t7wqs"]
+
+[sub_resource type="Environment" id="Environment_61w0q"]
+background_color = Color(0, 0, 0, 0)
+background_energy_multiplier = 0.84
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 0)
+ambient_light_energy = 0.38
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ahvul"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxdy8"]
+diffuse_mode = 3
+albedo_color = Color(0.733333, 0.733333, 0.733333, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qiq24"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swf35"]
+render_priority = 1
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.258824, 0.258824, 0.258824, 0.509804)
+metallic = 0.63
+roughness = 0.26
+ao_light_affect = 0.19
+refraction_enabled = true
+refraction_scale = 0.0
+
+[sub_resource type="TextMesh" id="TextMesh_jqojb"]
+text = "De"
+font = ExtResource("2_ma0d8")
+curve_step = 0.1
+depth = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rpq0"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_n2nb5"]
+text = "Defaultium"
+font = ExtResource("2_ma0d8")
+depth = 0.0
+
+[sub_resource type="TextMesh" id="TextMesh_8t2ti"]
+text = "0.0"
+font = ExtResource("3_t7wqs")
+depth = 0.0
+
+[sub_resource type="TextMesh" id="TextMesh_d4vqw"]
+text = "0"
+font = ExtResource("3_t7wqs")
+horizontal_alignment = 0
+vertical_alignment = 0
+depth = 0.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_61w0q")
+camera_attributes = SubResource("CameraAttributesPractical_ahvul")
+
+[node name="Alternative" type="Node3D" parent="."]
+visible = false
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1.138)
+material_override = SubResource("StandardMaterial3D_oxdy8")
+mesh = SubResource("PlaneMesh_qiq24")
+skeleton = NodePath("")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5.176, 3.55271e-15)
+light_energy = 2.705
+light_size = 0.59
+shadow_enabled = true
+shadow_bias = 0.057
+spot_range = 12.9711
+spot_angle = 70.9485
+
+[node name="SymbolText" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(6.5, 9.9476e-14, 4.34823e-21, 0, -2.84124e-07, 6.5, 9.9476e-14, -6.5, -2.84124e-07, 0, 0.321191, -0.0502699)
+material_override = SubResource("StandardMaterial3D_swf35")
+mesh = SubResource("TextMesh_jqojb")
+skeleton = NodePath("../..")
+
+[node name="Shadow" type="MeshInstance3D" parent="Base/SymbolText"]
+transform = Transform3D(1, -5.46571e-15, 2.98023e-08, 5.46571e-15, 1, 1.31062e-14, -2.98023e-08, -1.31062e-14, 1, 3.72529e-09, 0, 5.21541e-08)
+cast_shadow = 3
+mesh = SubResource("TextMesh_jqojb")
+skeleton = NodePath("../..")
+
+[node name="NameText" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1.5, -2.50556e-22, -1.09522e-29, 0, -6.55671e-08, 1.5, -2.50556e-22, -1.5, -6.55671e-08, 0, 0.271191, 0.574456)
+material_override = SubResource("StandardMaterial3D_1rpq0")
+cast_shadow = 0
+mesh = SubResource("TextMesh_n2nb5")
+
+[node name="AtomicMassText" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1, 0, -3.82137e-15, 3.82137e-15, 4.37114e-08, 1, 0, -1, 4.37114e-08, 0, 0.271191, 0.788406)
+material_override = SubResource("StandardMaterial3D_1rpq0")
+cast_shadow = 0
+mesh = SubResource("TextMesh_8t2ti")
+
+[node name="AtomicNumberText" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1, 0, -2.98023e-08, 2.98023e-08, 3.55271e-15, 1, 8.88178e-16, -1, 3.55271e-15, -0.857073, 0.271191, -0.899493)
+material_override = SubResource("StandardMaterial3D_1rpq0")
+cast_shadow = 0
+mesh = SubResource("TextMesh_d4vqw")
+skeleton = NodePath("../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.345423, 0.887728, -0.304338, -0.330352, 0.418566, 0.845973, 0.87838, -0.19168, 0.437845, -2.06729, 3.21486, 1.453)
+light_energy = 2.299
+light_size = 0.59
+shadow_enabled = true
+shadow_bias = 0.057
+spot_range = 10.8357
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.12696)
+projection = 1
+fov = 60.0
+size = 2.5

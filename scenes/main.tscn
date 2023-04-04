@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce4idrl6bk8wn"]
+
+[ext_resource type="PackedScene" uid="uid://c7qvd2ctvn1ag" path="res://scenes/periodic_table.tscn" id="1_cyjmi"]
+[ext_resource type="PackedScene" uid="uid://b8jdlq3nka1ef" path="res://scenes/element.tscn" id="2_e8bxi"]
+
+[sub_resource type="Animation" id="Animation_tlm7q"]
+resource_name = "camera_movement"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(800, 450), Vector2(2400, 450)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2bfct"]
+_data = {
+"camera_movement": SubResource("Animation_tlm7q")
+}
+
+[sub_resource type="Gradient" id="Gradient_jaamy"]
+offsets = PackedFloat32Array(0.990148, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mqj8h"]
+gradient = SubResource("Gradient_jaamy")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2bfct")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(800, 450)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -1905.0
+offset_top = -1435.0
+offset_right = 3931.0
+offset_bottom = 2407.0
+texture = SubResource("GradientTexture1D_mqj8h")
+
+[node name="periodic_table" parent="." instance=ExtResource("1_cyjmi")]
+
+[node name="element" parent="." node_paths=PackedStringArray("periodic_table_root") instance=ExtResource("2_e8bxi")]
+offset_left = 1600.0
+offset_right = 1600.0
+periodic_table_root = NodePath("../periodic_table")

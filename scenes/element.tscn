@@ -1,0 +1,344 @@
+[gd_scene load_steps=35 format=3 uid="uid://b8jdlq3nka1ef"]
+
+[ext_resource type="Script" path="res://scripts/ColorSetup.gd" id="1_3qfkk"]
+[ext_resource type="PackedScene" uid="uid://dnki2t4qc0nm5" path="res://scenes/element_model.tscn" id="1_bg5il"]
+[ext_resource type="Theme" uid="uid://dhch5scnjqe4s" path="res://resources/additional_property_even.tres" id="2_63woj"]
+[ext_resource type="Theme" uid="uid://t1y2id3tjhle" path="res://resources/additional_property_odd.tres" id="3_atffc"]
+[ext_resource type="FontFile" uid="uid://ceyw1wb3gdw7l" path="res://resources/fonts/HW_Pano_Trial/HW Pano Trial Regular.otf" id="4_ngbep"]
+[ext_resource type="Texture2D" uid="uid://qfgvsmi3bdx7" path="res://Element Overview - 3D Text.png" id="5_8mdt0"]
+[ext_resource type="Script" path="res://scripts/VerticalCarousel.gd" id="5_g7h3n"]
+[ext_resource type="Script" path="res://scripts/ElementModelViewManager.gd" id="6_071b4"]
+[ext_resource type="Texture2D" uid="uid://dv5lns1nb4fmg" path="res://resources/down_icon.png" id="7_e5pi2"]
+[ext_resource type="FontFile" uid="uid://76t8ukcmnhb2" path="res://resources/fonts/HW_Pano_Trial/HW Pano Trial Bold.woff" id="7_hd7dk"]
+[ext_resource type="FontFile" uid="uid://yfwuin1sa4ir" path="res://resources/fonts/HW_Pano_Trial/HW Pano Trial Bold.otf" id="8_yti4a"]
+[ext_resource type="FontFile" uid="uid://dbclcdqu64gph" path="res://resources/fonts/Public_Sans/PublicSans-Medium.ttf" id="10_i88ea"]
+[ext_resource type="PackedScene" uid="uid://gqjc635j7m7s" path="res://scenes/electron_shell_vis.tscn" id="11_o4crk"]
+[ext_resource type="PackedScene" uid="uid://b5sh1fkbxc8cp" path="res://resources/models/mesh1.gltf" id="14_qgs5p"]
+
+[sub_resource type="Gradient" id="Gradient_pj6x1"]
+colors = PackedColorArray(0.552955, 0.552956, 0.552956, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1miil"]
+gradient = SubResource("Gradient_pj6x1")
+width = 1600
+height = 900
+fill_from = Vector2(0.333333, 1)
+fill_to = Vector2(0.612981, 0.0042735)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1m35s"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djpjg"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c3pi"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgsot"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3s856"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 20
+
+[sub_resource type="Theme" id="Theme_yioef"]
+default_font = ExtResource("4_ngbep")
+default_font_size = 35
+Button/styles/disabled = SubResource("StyleBoxFlat_1m35s")
+Button/styles/focus = SubResource("StyleBoxFlat_djpjg")
+Button/styles/hover = SubResource("StyleBoxFlat_1c3pi")
+Button/styles/normal = SubResource("StyleBoxFlat_bgsot")
+Button/styles/pressed = SubResource("StyleBoxFlat_3s856")
+
+[sub_resource type="GDScript" id="GDScript_txfnc"]
+resource_name = "HomeButton"
+script/source = "extends Button
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	var player = get_tree().get_root().get_node(\"Node2D/AnimationPlayer\") as AnimationPlayer
+	
+	player.play_backwards(\"camera_movement\")
+"
+
+[sub_resource type="Theme" id="Theme_fdenm"]
+default_font = ExtResource("4_ngbep")
+default_font_size = 35
+Label/colors/font_color = Color(0.341176, 0.345098, 0.945098, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erwdr"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ckgo8"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3htfa"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+
+[sub_resource type="Theme" id="Theme_r87fw"]
+default_font = ExtResource("4_ngbep")
+default_font_size = 40
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_outline_color = Color(1, 1, 1, 0)
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_erwdr")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_ckgo8")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_3htfa")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vb22v"]
+content_margin_left = 0.0
+content_margin_top = 20.0
+content_margin_bottom = 10.0
+
+[sub_resource type="Theme" id="Theme_8xb25"]
+Label/styles/normal = SubResource("StyleBoxEmpty_vb22v")
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1rfr"]
+line_spacing = 0.0
+font = ExtResource("4_ngbep")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x7u13"]
+line_spacing = 0.0
+font = ExtResource("8_yti4a")
+font_size = 45
+font_color = Color(0.341176, 0.345098, 0.945098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xsrip"]
+font = ExtResource("7_hd7dk")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_f17jq"]
+default_font = ExtResource("10_i88ea")
+default_font_size = 18
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+
+[node name="Node" type="Control" node_paths=PackedStringArray("element_model_view", "periodic_table_root", "background_texture", "name_label", "description_label", "vertical_carousel", "electron_shell_visualiser", "additional_properties_bar")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3qfkk")
+element_model_view = NodePath("ElementModelViewport/SubViewport/ElementModelView")
+periodic_table_root = NodePath("OverviewLabel")
+background_texture = NodePath("BackgroundTexture")
+name_label = NodePath("NameLabel")
+description_label = NodePath("OverviewLabel")
+vertical_carousel = NodePath("CenterContainer/VerticalCarousel")
+electron_shell_visualiser = NodePath("ElectronShellViewport/SubViewport/ElectronShellVisualiser")
+additional_properties_bar = NodePath("ScrollContainer/AdditionalPropertiesBar")
+additional_property_even_theme = ExtResource("2_63woj")
+additional_property_odd_theme = ExtResource("3_atffc")
+
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+texture = SubResource("GradientTexture2D_1miil")
+
+[node name="ElementOverview-3dText" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.282353)
+position = Vector2(800, 450)
+scale = Vector2(0.833333, 0.833333)
+texture = ExtResource("5_8mdt0")
+
+[node name="ElementModelViewport" type="SubViewportContainer" parent="."]
+layout_mode = 2
+offset_left = 424.0
+offset_top = 134.0
+offset_right = 1024.0
+offset_bottom = 734.0
+
+[node name="SubViewport" type="SubViewport" parent="ElementModelViewport"]
+transparent_bg = true
+handle_input_locally = false
+msaa_2d = 3
+msaa_3d = 3
+size = Vector2i(600, 600)
+render_target_update_mode = 4
+
+[node name="ElementModelView" parent="ElementModelViewport/SubViewport" instance=ExtResource("1_bg5il")]
+script = ExtResource("6_071b4")
+rotation_range = 30.0
+custom_things = Array[Node3D]([null, null])
+
+[node name="HomeButton" type="Button" parent="."]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 133.0
+theme = SubResource("Theme_yioef")
+text = "HOME"
+script = SubResource("GDScript_txfnc")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 492.0
+offset_top = 53.0
+offset_right = 793.0
+offset_bottom = 97.0
+theme = SubResource("Theme_fdenm")
+text = "defaultium"
+
+[node name="NameLabelUnderline" type="Line2D" parent="."]
+position = Vector2(492, 99)
+points = PackedVector2Array(0, 0, 378, 0)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = 133.0
+offset_right = 300.0
+offset_bottom = 900.0
+
+[node name="VerticalCarousel" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+script = ExtResource("5_g7h3n")
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VerticalCarousel"]
+layout_mode = 2
+theme = SubResource("Theme_r87fw")
+placeholder_text = "23"
+alignment = 1
+
+[node name="UpButton" type="TextureButton" parent="CenterContainer/VerticalCarousel"]
+layout_mode = 2
+texture_normal = ExtResource("7_e5pi2")
+texture_pressed = ExtResource("7_e5pi2")
+texture_hover = ExtResource("7_e5pi2")
+texture_disabled = ExtResource("7_e5pi2")
+texture_focused = ExtResource("7_e5pi2")
+stretch_mode = 3
+flip_v = true
+
+[node name="Label5" type="Label" parent="CenterContainer/VerticalCarousel"]
+layout_mode = 2
+theme = SubResource("Theme_8xb25")
+text = "00"
+label_settings = SubResource("LabelSettings_s1rfr")
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CenterContainer/VerticalCarousel"]
+layout_mode = 2
+theme = SubResource("Theme_8xb25")
+text = "00"
+label_settings = SubResource("LabelSettings_s1rfr")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CenterContainer/VerticalCarousel"]
+layout_mode = 2
+theme = SubResource("Theme_8xb25")
+text = "00"
+label_settings = SubResource("LabelSettings_x7u13")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CenterContainer/VerticalCarousel"]
+layout_mode = 2
+theme = SubResource("Theme_8xb25")
+text = "00"
+label_settings = SubResource("LabelSettings_s1rfr")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VerticalCarousel"]
+layout_mode = 2
+theme = SubResource("Theme_8xb25")
+text = "00"
+label_settings = SubResource("LabelSettings_s1rfr")
+horizontal_alignment = 1
+
+[node name="DownButton" type="TextureButton" parent="CenterContainer/VerticalCarousel"]
+layout_mode = 2
+texture_normal = ExtResource("7_e5pi2")
+texture_pressed = ExtResource("7_e5pi2")
+texture_hover = ExtResource("7_e5pi2")
+texture_disabled = ExtResource("7_e5pi2")
+texture_focused = ExtResource("7_e5pi2")
+stretch_mode = 3
+
+[node name="OverviewTitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 759.0
+offset_right = 578.0
+offset_bottom = 803.0
+text = "OVERVIEW"
+label_settings = SubResource("LabelSettings_xsrip")
+
+[node name="OverviewLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 811.0
+offset_right = 1127.0
+offset_bottom = 875.0
+theme = SubResource("Theme_f17jq")
+text = "Lorem ipsum"
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PackedVector2Array(1248, 351, 1600, 351)
+width = 1.0
+default_color = Color(0, 0, 0, 0.498039)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 1248.0
+offset_top = 351.0
+offset_right = 1600.0
+offset_bottom = 900.0
+
+[node name="AdditionalPropertiesBar" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(1248, 0, 1248, 900)
+width = 1.0
+default_color = Color(0, 0, 0, 0.498039)
+
+[node name="ElectronShellViewport" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_left = 1249.0
+offset_top = 1.0
+offset_right = 1600.0
+offset_bottom = 352.0
+
+[node name="SubViewport" type="SubViewport" parent="ElectronShellViewport"]
+transparent_bg = true
+handle_input_locally = false
+msaa_2d = 1
+size = Vector2i(351, 351)
+render_target_update_mode = 4
+
+[node name="ElectronShellVisualiser" parent="ElectronShellViewport/SubViewport" instance=ExtResource("11_o4crk")]
+ring_width = 0.5
+points_amount = 30
+electron_radius = 6.0
+core_color = Color(1, 0, 0, 1)
+electron_color = Color(0, 0, 1, 1)
+
+[node name="custom_things" type="Node3D" parent="."]
+visible = false
+
+[node name="mesh1" parent="custom_things" instance=ExtResource("14_qgs5p")]
+
+[connection signal="pressed" from="HomeButton" to="HomeButton" method="_on_pressed"]
+[connection signal="number_changed" from="CenterContainer/VerticalCarousel" to="." method="_on_vertical_carousel_number_changed"]
+[connection signal="text_submitted" from="CenterContainer/VerticalCarousel/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="CenterContainer/VerticalCarousel/UpButton" to="CenterContainer/VerticalCarousel" method="_on_up_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VerticalCarousel/DownButton" to="CenterContainer/VerticalCarousel" method="_on_down_button_pressed"]
