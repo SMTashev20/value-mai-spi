@@ -1,10 +1,6 @@
 # Team Value Mai Spi
 
 <p align = "center">
-    <img src="img/logos/lightBannerFinal.jpg"/>
-</p>
-
-<p align = "center">
     <img alt="GitHub milestones" src="https://img.shields.io/github/milestones/all/SMTashev20/value-mai-spi?style=flat-square">
     <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/SMTashev20/value-mai-spi?style=flat-square">
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/SMTashev20/value-mai-spi?style=flat-square">
