@@ -9,7 +9,7 @@
 </p>
 
 ## 💻 About
-<p>This is a website about with interatcive map and very interesting information about different coutries</p>
+<p>This is an application, which teach chemistry!</p>
 
 ## 📄 Documents
 ### Documentation
